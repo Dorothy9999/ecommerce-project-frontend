@@ -1,0 +1,44 @@
+.form-login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+}
+
+form {
+    border-radius: 5px;
+    border-style: groove;
+    padding: 5%;
+    width: 150%;
+}
+
+#body {
+    background-image: url("bg_img.jpeg");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 45%;
+    z-index: 2;
+}
+
+@media screen and (min-width: 500px) {
+    form {
+        margin-left: 100px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    form {
+        margin-left: 30px;
+    }
+
+    #body {
+        background-position: bottom;
+    }
+
+}
+
+
+
+
+

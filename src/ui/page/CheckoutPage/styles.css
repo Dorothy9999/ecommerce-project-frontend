@@ -1,0 +1,31 @@
+.listing-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5%;
+}
+
+.pic-spec-row {
+    align-items: center;
+}
+
+#product-pic {
+    width:90%;
+    height: auto;
+    max-height: 40vh;
+    object-fit: contain;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.spec-div-container {
+    width: 100%;
+    padding: 5%;
+    border: 2px solid #07efef;
+    border-radius: 15px;
+}
+
+.row {
+    padding: 10px;
+}

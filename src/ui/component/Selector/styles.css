@@ -1,0 +1,12 @@
+.selector {
+    display: flex;
+    align-items: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.selector-btn {
+    margin: 2%;
+}
+
+

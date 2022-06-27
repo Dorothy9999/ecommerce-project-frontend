@@ -1,0 +1,22 @@
+img {
+    /*width: 50%;*/
+    /*height: 20vw;*/
+    /*object-fit: scale-down;*/
+}
+
+#img-col {
+    display: flex;
+    align-items: center;
+}
+
+.btn-primary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 800px) {
+    #product-details-container {
+        flex-direction: column;
+    }
+}

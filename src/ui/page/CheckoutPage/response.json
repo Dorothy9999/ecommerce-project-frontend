@@ -1,0 +1,48 @@
+{
+  "tid": 45,
+  "datetime": "20220619T04:30:18",
+  "status": "PREPARE",
+  "items": [
+    {
+      "tpid": 46,
+      "product": {
+        "pid": 4,
+        "name": "Yuji Itadori Figure",
+        "description": "Offical product!",
+        "price": 145.99,
+        "stock": 20,
+        "image_url": "https://bbts1.azureedge.net/images/p/full/2021/06/52f140f0-ded6-4668-bd96-b5c7b268eb83.jpg"
+      },
+      "quantity": 5,
+      "subtotal": 729.95
+    },
+    {
+      "tpid": 47,
+      "product": {
+        "pid": 26,
+        "name": "Gojo Satoru Figure",
+        "description": "Offical product!",
+        "price": 155.99,
+        "stock": 40,
+        "image_url": "https://images.goodsmile.info/cgm/images/product/20201204/10491/78229/large/1f267b1880bfeb45f05a0559d0de81cb.jpg"
+      },
+      "quantity": 5,
+      "subtotal": 779.95
+    },
+    {
+      "tpid": 48,
+      "product": {
+        "pid": 4,
+        "name": "Yuji Itadori Figure",
+        "description": "Offical product!",
+        "price": 145.99,
+        "stock": 20,
+        "image_url": "https://bbts1.azureedge.net/images/p/full/2021/06/52f140f0-ded6-4668-bd96-b5c7b268eb83.jpg"
+      },
+      "quantity": 4,
+      "subtotal": 583.96
+    }
+  ],
+  "buyer_uid": 1,
+  "total": 2093.86
+}

@@ -1,0 +1,22 @@
+img.logo {
+    width: 4em;
+    height: 4em;
+    margin-right: 1%;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#login-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+
+.shopping-cart {
+    margin-left: 10px;
+}
+
+/*style={{textDecoration: "none"}}*/

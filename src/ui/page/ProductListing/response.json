@@ -1,0 +1,44 @@
+[
+  {
+    "pid": 3,
+    "name": "Gojo Satoru Figure",
+    "price": 155.99,
+    "image_url": "https://images.goodsmile.info/cgm/images/product/20201204/10491/78229/large/1f267b1880bfeb45f05a0559d0de81cb.jpg",
+    "in_stock": true
+  },
+  {
+    "pid": 4,
+    "name": "Yuji Itadori Figure",
+    "price": 145.99,
+    "image_url": "https://m.media-amazon.com/images/I/71PxAt+t+gL._AC_SX679_.jpg",
+    "in_stock": false
+  },
+  {
+    "pid": 5,
+    "name": "Yuji Itadori Figure",
+    "price": 151.99,
+    "image_url": "https://bbts1.azureedge.net/images/p/full/2021/06/52f140f0-ded6-4668-bd96-b5c7b268eb83.jpg",
+    "in_stock": false
+  },
+  {
+    "pid": 15,
+    "name": "Panda",
+    "price": 100.99,
+    "image_url": "https://images.goodsmile.info/cgm/images/product/20220314/12460/96475/large/b55b4be57e70fca180f3f45631170e4c.jpg",
+    "in_stock": false
+  },
+  {
+    "pid": 17,
+    "name": "Yuji Itadori Figure",
+    "price": 151.99,
+    "image_url": "https://images.goodsmile.info/cgm/images/product/20201002/10173/75272/large/07d43677e24df7a06a95cc7a5c2aa74c.jpg",
+    "in_stock": true
+  },
+  {
+    "pid": 26,
+    "name": "Gojo Satoru Figure",
+    "price": 155.99,
+    "image_url": "https://images.goodsmile.info/cgm/images/product/20201204/10491/78229/large/1f267b1880bfeb45f05a0559d0de81cb.jpg",
+    "in_stock": true
+  }
+]
