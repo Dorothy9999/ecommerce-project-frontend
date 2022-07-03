@@ -3,7 +3,7 @@ import {firebaseAuthServiceGetAccessToken} from "../service/AuthService";
 import {TransactionDetailsData} from "../data/TransactionData";
 import getEnvConfig from "../Config/Config";
 
-export function createTransactionfromResource(createTransaction: (tid: number | null) => void) {
+export function createTransactionfromResource(handleCheckoutOnCLick: (tid: number | null) => void) {
     firebaseAuthServiceGetAccessToken()
         ?.then((token: string) => {
                 return axios.post(`${getEnvConfig().baseUrl}/transaction/prepare`, undefined, {
@@ -11,9 +11,9 @@ export function createTransactionfromResource(createTransaction: (tid: number | 
                 })
             }
         ).then((response: AxiosResponse<TransactionDetailsData>) => {
-        createTransaction(response.data.tid); //can't set return type as number!! Promise不可return
+        handleCheckoutOnCLick(response.data.tid); //can't set return type as number!! Promise不可return
     }).catch(() => {
-        createTransaction(null)
+        handleCheckoutOnCLick(null)
     })
 }
 

@@ -9,9 +9,10 @@ import MockData from './propduct_details_response.json'
 import LoadingSpinner from "../../component/LoadingSpinner";
 import {Navigate, useNavigate, useParams} from 'react-router-dom'
 import {getProductDetailsData} from "../../../resource/ProductResource";
-import {finishTransaction, putCartItem} from "../../../resource/CartItemResource";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {firebaseAuthServiceGetAccessToken} from "../../../service/AuthService";
+import {putCartItem} from "../../../resource/CartItemResource";
 
 type Params = {
     productId: string
@@ -36,6 +37,7 @@ export default function ProductDetails() {
         }
     }
 
+    ////get pid from url to get product details data
     const [productDetailsData, setProductDetailsData] = useState<ProductDetailsData | undefined | null>(undefined)
 
     useEffect(() => {
@@ -50,13 +52,24 @@ export default function ProductDetails() {
     let loadProductDetailsData = (data: ProductDetailsData|null) => {
         setProductDetailsData(data);
     }
+    ////get pid from url to get product details data
 
-    const [show, setShow] = useState(false); //for toast
-    const [showRemindAddToCart, setShowRemindAddToCart] = useState(false); //show when user is login
+    const [showAddedItemToCartSuccess, setShowAddedItemToCartSuccess] = useState(false); //for toast
+    const [showRemindLoginBeforeAddToCart, setShowRemindLoginBeforeAddToCart] = useState(false); //show when user is login
 
     const onApiPutCartItem = (isSuccess: boolean) => {
         if(isSuccess){
-            setShow(true);
+            setShowAddedItemToCartSuccess(true);
+        }
+    }
+
+    const addItemToCartProcessBegin = (pid:number ) => {
+        let result:Promise<string>|null = firebaseAuthServiceGetAccessToken();
+
+        if (result === null) {
+            setShowRemindLoginBeforeAddToCart(true);
+        } else {
+            putCartItem(pid, quantity, onApiPutCartItem, result);
         }
     }
 
@@ -86,12 +99,10 @@ export default function ProductDetails() {
                                                   setQuantityMinusOne={setQuantityMinusOne}
                                                   setQuantityPlusOne={setQuantityPlusOne}/>
                                         <Card.Text>
-                                            <Button variant="primary" onClick={ ()=>{
-                                                console.log("triggered onClick")
-                                                putCartItem(productDetailsData.pid, quantity, onApiPutCartItem, setShowRemindAddToCart);
-                                                finishTransaction(productDetailsData.pid, quantity, onApiPutCartItem, setShowRemindAddToCart)
-                                            }
-                                            }>
+                                            <Button variant="primary" onClick={ ()=> {
+                                                addItemToCartProcessBegin(productDetailsData.pid);
+                                            }}
+                                            >
                                                 <FontAwesomeIcon icon={solid('cart-shopping')}/>
                                                 Add to cart
                                             </Button>
@@ -111,16 +122,16 @@ export default function ProductDetails() {
             ? <Navigate to="/404" replace />
             : <LoadingSpinner/> }
 
-            <Toast onClose={() => setShow(false)} show={show} delay={5000} autohide
+            <Toast onClose={() => setShowAddedItemToCartSuccess(false)} show={showAddedItemToCartSuccess} delay={5000} autohide
                    style={{position:"absolute", right:24, bottom:24}}
             >
                 <Toast.Header>
                     <strong className="me-auto">Succeeded!</strong>
                 </Toast.Header>
-                <Toast.Body>Woohoo! You have added 1 {productDetailsData?.name} to cart
+                <Toast.Body>Woohoo! You have added {quantity} {productDetailsData?.name} to cart
                     </Toast.Body>
             </Toast>
-            <Toast onClose={() => setShowRemindAddToCart(false)} show={true} delay={5000} autohide
+            <Toast onClose={() => setShowRemindLoginBeforeAddToCart(false)} show={showRemindLoginBeforeAddToCart} delay={5000} autohide
                    style={{position:"absolute", right:24, bottom:24}}
             >
                 <Toast.Header>

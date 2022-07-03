@@ -65,22 +65,16 @@ export default function NavbarTop() {
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
-            <CartPage show={show} handleClose={handleClose}/>
+            {/*passing props to cartpage*/}
+            <CartPage show={show} handleClose={handleClose} currentUser={currentUser}/>
             <Container>
-                <img className={"logo"} src={logo}/>
+                <img className="logo" src={logo}/>
                 <Link to={"/"}><Navbar.Brand>Jujutsu Kaisen Figureines</Navbar.Brand></Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Features</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
-                        <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        </NavDropdown>
                     </Nav>
                     <Nav id={"login-nav"}>
                         {onLoginSuccess()}

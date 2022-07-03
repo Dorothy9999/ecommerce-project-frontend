@@ -77,17 +77,6 @@ export const firebaseAuthServiceGetAccessToken = () => {
     //this is returning a promise object
 }
 
-/* original code:
-export const firebaseAuthServiceGetAccessToken = () => {
-    const currentUser = getAuth().currentUser;
-    if (!currentUser) {
-        return null;
-    }
-    return currentUser.getIdToken(false);
-    //this is returning a promise object
-}
-
- */
 
 export const firebaseAuthServiceSignOut = () => {
     const auth = getAuth();

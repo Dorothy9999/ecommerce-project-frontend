@@ -11,6 +11,7 @@ import {
     updateStatusToProccessingAndSuccess
 } from "../../../resource/TransactionResource";
 import LoadingSpinner from "../../component/LoadingSpinner";
+import ThankYou from "../ThankYou";
 
 type Params = {
     transactionId: string
@@ -52,7 +53,7 @@ export default function CheckoutPage() {
     ////update status to finish
     let onApiFinishTransaction = (isSuccess: boolean) => {
         if (isSuccess) {
-            navigate('/thankyou')
+            navigate(`/thankyou/${params.transactionId}`)
         } else if (isSuccess === null) {
             navigate('/404')
         }
@@ -104,10 +105,9 @@ export default function CheckoutPage() {
                     <LoadingSpinner/>
                     : null //equals to <></> empty action
             }
-            <Container className={"total-bar"}>
+            <Container>
                 <Row>
-                    <Col>Total:</Col>
-                    <Col>${calTotalPrice()}</Col>
+                    <Col md lg={{span: 6, offset:6}} className={"total-bar"}>Total: ${calTotalPrice()}</Col>
                 </Row>
             </Container>
             <Form className="payment-form" onSubmit={handleSubmit}>

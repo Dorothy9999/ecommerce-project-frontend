@@ -11,14 +11,16 @@ import {Link, useNavigate} from "react-router-dom";
 import {TransactionDetailsData} from "../../../data/TransactionData";
 import {createTransactionfromResource} from "../../../resource/TransactionResource";
 import LoadingSpinner from "../../component/LoadingSpinner";
+import {UserData} from "../../../data/UserData";
 
 export type Props = {
     show: boolean,
-    handleClose: () => void
+    handleClose: () => void,
+    currentUser: UserData | null | undefined
 }
 
 export default function CartPage(props: Props) {
-    const [cartItemDataList, setCartItemDataList] = useState<ShoppingCartData[] | undefined | null>(undefined)
+    const [cartItemDataList, setCartItemDataList] = useState<ShoppingCartData[] | undefined | null>(null)
 
     useEffect(() => {
         if (cartItemDataList === undefined) {
@@ -76,16 +78,14 @@ export default function CartPage(props: Props) {
 
     ///create transaction:
     const navigate = useNavigate();
-    let handleCheckoutOnCLick = (tid:number|null) => {
+    let handleCheckoutOnCLick = (tid: number | null) => {
         if (tid) {
-            console.log("show "+tid);
-            navigate (`/checkout/${tid}`);
+            navigate(`/checkout/${tid}`);
         } else if (tid === null) {
-            console.log("null");
-            navigate (`/404`);
+            navigate(`/404`);
         } else {
             return (
-                <Spinner animation="border" variant="primary" />
+                <Spinner animation="border" variant="primary"/>
             )
         }
     }
@@ -93,71 +93,87 @@ export default function CartPage(props: Props) {
 
     return (
         <>
-        <Offcanvas show={props.show} onHide={props.handleClose} placement={"end"}
-                   onEntering={handleOnEnter}>
-            <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Cart items</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Row className={"total-price-row"}>
-                <Col md={4}>Total</Col>
-                <Col md={4}>${calTotalPrice()}</Col>
-                <Col md={4}>
-                    <Button variant={"success"} className={"checkout-btn"}
-                            onClick={() => {
-                                createTransactionfromResource(handleCheckoutOnCLick);
-                            }}
-                    >Checkout
-                    </Button>
-            </Col>
-        </Row>
-        <Offcanvas.Body>
-            {cartItemDataList?.map((value, index) => {
-                return (
-                    <Card key={index}>
-                        <Card.Img variant="top" src={value.image_url}/>
-                        <Card.Title>{value.name}</Card.Title>
-                        <Container>
-                            <Row>
-                                <Col>Unit</Col>
-                                <Col>{value.cart_quantity}</Col>
-                            </Row>
-                            <Row>
-                                <Col>Unit Price</Col>
-                                <Col>${value.price}</Col>
-                            </Row>
-                            <Row>
-                                <Selector
-                                    quantity={value.cart_quantity}
-                                    setQuantityMinusOne={() => {
-                                        console.log("minusone")
-                                        quantityMinusOne(value.pid, value.cart_quantity);
-                                    }}
-                                    setQuantityPlusOne={() => {
-                                        quantityPlusOne(value.pid, value.cart_quantity, value.stock);
-                                    }}
-                                />
-                            </Row>
-                            <Row>
-                                <Col>Subtotal</Col>
-                                <Col>${value.price * value.cart_quantity}</Col>
-                            </Row>
-                            <Row className={"remove-item-row"}>
-                                <Col>Delete from cart</Col>
-                                <Col>
-                                    <Button className={"remove-btn"} variant={"danger"} onClick={() => {
-                                        removeCartItem(value.pid, onApiRemoveCartItem)
-                                    }}>
-                                        <FontAwesomeIcon icon={solid('trash-can')}/>
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Card>
-                )
-            })}
-        </Offcanvas.Body>
-        </Offcanvas>
+            <Offcanvas show={props.show} onHide={props.handleClose} placement={"end"}
+                       onEntering={handleOnEnter}>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Cart items</Offcanvas.Title>
+                </Offcanvas.Header>
+                    {
+                        (cartItemDataList) ?
+                            <Offcanvas.Body>
+                                <Row className={"total-price-row"}>
+                                    <Col md={4}>Total</Col>
+                                    <Col md={4}>${calTotalPrice()}</Col>
+                                    <Col md={4}>
+                                        <Button variant={"success"} className={"checkout-btn"}
+                                                onClick={() => {
+                                                    <p>In progress</p>
+                                                    createTransactionfromResource(handleCheckoutOnCLick);
+                                                }}
+                                        >Checkout
+                                        </Button>
+                                    </Col>
+                                </Row>
+                                {
+                                cartItemDataList?.map((value, index) => {
+                                    return (
+                                        <Card key={index}>
+                                            <Card.Img variant="top" src={value.image_url}/>
+                                            <Card.Title>{value.name}</Card.Title>
+                                            <Container>
+                                                <Row>
+                                                    <Col>Unit</Col>
+                                                    <Col>{value.cart_quantity}</Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col>Unit Price</Col>
+                                                    <Col>${value.price}</Col>
+                                                </Row>
+                                                <Row>
+                                                    <Selector
+                                                        quantity={value.cart_quantity}
+                                                        setQuantityMinusOne={() => {
+                                                            console.log("minusone")
+                                                            quantityMinusOne(value.pid, value.cart_quantity);
+                                                        }}
+                                                        setQuantityPlusOne={() => {
+                                                            quantityPlusOne(value.pid, value.cart_quantity, value.stock);
+                                                        }}
+                                                    />
+                                                </Row>
+                                                <Row>
+                                                    <Col>Subtotal</Col>
+                                                    <Col>${value.price * value.cart_quantity}</Col>
+                                                </Row>
+                                                <Row className={"remove-item-row"}>
+                                                    <Col>Delete from cart</Col>
+                                                    <Col>
+                                                        <Button className={"remove-btn"} variant={"danger"}
+                                                                onClick={() => {
+                                                                    removeCartItem(value.pid, onApiRemoveCartItem)
+                                                                }}>
+                                                            <FontAwesomeIcon icon={solid('trash-can')}/>
+                                                        </Button>
+                                                    </Col>
+                                                </Row>
+                                            </Container>
+                                        </Card>
+                                    )
+                                })
+                            }</Offcanvas.Body>
+                            : (props.currentUser === null) ?
+                                <div className="msg-remind-login">
+                                    <p>Please log in to check cart items :)</p>
+                                    <Link to={"/login"}>
+                                    <Button variant={"primary"}>Log in</Button>
+                                    </Link>
+                                </div>
+                                 :
+                                <LoadingSpinner/>
+                    }
 
-</>
-)
+            </Offcanvas>
+
+        </>
+    )
 }

@@ -68,7 +68,21 @@ export function patchCartItemQuantity(pid: number, quantity: number,
 
 }
 
-//handle a rejection of promise, but don't work
+export function putCartItem (pid: number, quantity: number,  onApiPutCartItem: (isSuccess: boolean) => void, result:Promise<string>) {
+    result.then((token:string)=>{
+        return axios.put(`${getEnvConfig().baseUrl}/cart/add-item/${pid}/${quantity}`,
+            undefined,
+            {headers:{Authorization:'Bearer ' + token}})
+    }).then(()=>{
+        onApiPutCartItem(true);
+    }).catch(()=>{
+        onApiPutCartItem(false);
+    })
+}
+
+
+/*
+//handle a rejection of promise, but never reach to the error becoz it's null
 export function putCartItem(pid: number, quantity: number, onApiPutCartItem: (isSuccess: boolean) => void,
                             setShowRemindAddToCart: (isLogout: boolean) => void) {
     firebaseAuthServiceGetAccessToken()
@@ -80,7 +94,10 @@ export function putCartItem(pid: number, quantity: number, onApiPutCartItem: (is
     })
 }
 
-//from Max's example
+ */
+
+/*
+//from Max's example (testing)
 export function finishTransaction(pid: number, quantity: number, onApiPutCartItem: (isSuccess: boolean) => void,
                                   setShowRemindAddToCart: (isLogout: boolean) => void) {
     let idToken: string = "";
@@ -100,8 +117,10 @@ export function finishTransaction(pid: number, quantity: number, onApiPutCartIte
     })
 }
 
+ */
 
-/*
+
+/* original method:
 export function putCartItem (pid:number, quantity:number, onApiPutCartItem:(isSuccess:boolean)=>void,
                              setShowRemindAddToCart:(isLogin:boolean)=>void) {
     firebaseAuthServiceGetAccessToken()
@@ -109,11 +128,10 @@ export function putCartItem (pid:number, quantity:number, onApiPutCartItem:(isSu
             return axios.put(`${getEnvConfig().baseUrl}/cart/add-item/${pid}/${quantity}`,
                 undefined,
                 {headers:{Authorization:'Bearer ' + token}})
-        }).catch(() => { //if can't get firebase token
-            console.log("firebase token failed")
+        }).catch(() => { //if axios failed
             setShowRemindAddToCart(true);
     }).then(() => {
-        console.log("called API successfully")
+        console.log("called axios successfully")
             onApiPutCartItem(true);
         }).catch((error) => {
             console.log("onApiPutCartItem false")

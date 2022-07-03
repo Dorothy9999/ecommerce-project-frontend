@@ -4,17 +4,3 @@
     object-fit: scale-down;
     padding: 2%;
 }
-
-svg {
-    margin-right: 10px;
-}
-
-/*this doesn't work:*/
-.products-list {
-    /*margin: 50px;*/
-    padding: 50px;
-}
-
-/*.card {*/
-/*    margin: 30px;*/
-/*}*/

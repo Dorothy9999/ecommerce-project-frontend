@@ -34,7 +34,7 @@ function App() {
                           <Route path="/product/:productId" element={<ProductDetails/>}/>
                           <Route path="/login" element={<LoginPage/>}/>
                           <Route path="/checkout/:transactionId" element={<CheckoutPage/>}/>
-                          <Route path="/thankyou" element={<ThankYou/>}/>
+                          <Route path="/thankyou/:transactionId" element={<ThankYou/>}/>
                           <Route path="/404" element={<ErrorPage/>}/>
                       </Routes>
                   </HashRouter>

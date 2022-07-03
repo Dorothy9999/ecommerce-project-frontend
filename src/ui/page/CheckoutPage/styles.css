@@ -29,3 +29,12 @@
 .row {
     padding: 10px;
 }
+
+.total-bar {
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid #07efef;
+    border-radius: 15px;
+    padding: 1%;
+    margin-bottom: 1%;
+}
