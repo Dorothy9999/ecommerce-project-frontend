@@ -4,3 +4,9 @@
     object-fit: scale-down;
     padding: 2%;
 }
+
+@media only screen and (max-width: 800px) {
+    .product-img {
+        height: 40vh;
+    }
+}

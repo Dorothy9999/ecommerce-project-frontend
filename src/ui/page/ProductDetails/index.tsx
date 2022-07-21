@@ -77,8 +77,8 @@ export default function ProductDetails() {
         <>
             <NavbarTop/>
             { (productDetailsData)?
-            <Container>
-                <Row>
+            <Container >
+                <Row id={"product-details-container"}>
                     <Col id={"img-col"}>
                         <Card.Img id={"card-img"} variant="top" src={productDetailsData?.image_url}/>
                     </Col>

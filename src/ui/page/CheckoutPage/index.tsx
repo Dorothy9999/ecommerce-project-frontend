@@ -68,6 +68,11 @@ export default function CheckoutPage() {
     return (
         <>
             <NavbarTop/>
+            <Container>
+                <Row>
+                    <h3>Confirm your order:</h3>
+                </Row>
+            </Container>
             {
                 (transactionDetailsData) ?
                 transactionDetailsData?.items.map((value, index) => {
@@ -110,8 +115,11 @@ export default function CheckoutPage() {
                     <Col md lg={{span: 6, offset:6}} className={"total-bar"}>Total: ${calTotalPrice()}</Col>
                 </Row>
             </Container>
-            <Form className="payment-form" onSubmit={handleSubmit}>
+            <Container>
+                <Row>
+            <Form id="payment-form" onSubmit={handleSubmit}>
                 <Row className="mb-3">
+                    <h5>Credit Card Details: </h5>
                     <Form.Group as={Col} controlId="formFirstName">
                         <Form.Label>First Name</Form.Label>
                         <Form.Control type="text" placeholder="First Name"/>
@@ -144,6 +152,8 @@ export default function CheckoutPage() {
                     Submit
                 </Button>
             </Form>
+                </Row>
+            </Container>
         </>
     )
 }

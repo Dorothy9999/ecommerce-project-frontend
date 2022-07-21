@@ -30,14 +30,14 @@ export default function NavbarTop() {
     let onLoginSuccess = () => {
         if (currentUser) {
             return (
-                <>
-                    <p>{currentUser.email}</p>
+                <div id="email-signout-button">
+                    <p className="user-email">{currentUser.email}</p>
                     <Link to={"/login"}>
                         <Button variant="outline-primary" onClick={() => {
                             userSignout();
                         }}>Logout<FontAwesomeIcon icon={solid('right-to-bracket')}/></Button>
                     </Link>
-                </>
+                </div>
             )
         } else if (currentUser === undefined) {
             return <Spinner animation="border" variant="primary"/>

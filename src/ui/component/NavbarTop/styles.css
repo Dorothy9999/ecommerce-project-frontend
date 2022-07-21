@@ -19,4 +19,14 @@ a:link {
     margin-left: 10px;
 }
 
-/*style={{textDecoration: "none"}}*/
+#email-signout-button {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.user-email {
+    padding-top: 5%;
+    margin-right: 5px;
+    font-size: small;
+}

@@ -133,8 +133,10 @@ export default function CartPage(props: Props) {
                                                     <Selector
                                                         quantity={value.cart_quantity}
                                                         setQuantityMinusOne={() => {
-                                                            console.log("minusone")
                                                             quantityMinusOne(value.pid, value.cart_quantity);
+                                                            //why we don't write "quantityMinusOne" only?
+                                                            //becoz it has parameters, if we just write it like that, it will call function
+                                                            //so put it in a nameless function
                                                         }}
                                                         setQuantityPlusOne={() => {
                                                             quantityPlusOne(value.pid, value.cart_quantity, value.stock);
