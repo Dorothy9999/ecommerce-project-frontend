@@ -3,14 +3,15 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    /*justify-content: center;*/
 }
 
 form {
     border-radius: 5px;
     border-style: groove;
     padding: 5%;
-    width: 150%;
+    width: 50vw;
+    display: flex;
+    flex-flow: column;
 }
 
 #body {
@@ -21,21 +22,33 @@ form {
     z-index: 2;
 }
 
-@media screen and (min-width: 500px) {
+@media (min-width: 400px) and (max-width: 750px) {
     form {
-        margin-left: 100px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    form {
-        margin-left: 30px;
+        width: 80vw;
     }
 
     #body {
-        background-position: bottom;
+        background-position: 50% 70%;
     }
 
+    .form-login {
+        align-items: flex-start;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    form {
+        width: 90vw;
+    }
+
+    #body {
+        background-position: 50% 60%;
+    }
+
+    .form-login {
+        align-items: flex-start;
+    }
 }
 
 
